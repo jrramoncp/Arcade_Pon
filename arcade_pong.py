@@ -7,6 +7,22 @@ screen.bgcolor("black")
 screen.setup(width=800, height=600)
 screen.tracer(0) # Para que no parpadee la pantalla
 
+#Marcador
+
+marcador_one = 0
+marcador_two = 0
+
+
+
+marcador = turtle.Turtle()
+marcador.speed(0)
+marcador.color("white")
+marcador.penup()
+marcador.hideturtle() #Oculta el  puntero de turtle
+marcador.goto(0, 260)
+marcador.write(f"Jugador Uno: {marcador_one}      Jugador Dos: {marcador_two}",align="center", font=("Courier", 24, "normal"))
+
+
 # Jugadores
 player_one = turtle.Turtle() #Para crear un objeto Turtle
 player_one.speed(0) 
@@ -85,10 +101,28 @@ while True: # Bucle principal para que el programa funcione
     if pelota.xcor() > 390: # Si revasa por el lado derecho vuelve al centro
         pelota.goto(0,0)
         pelota.dx *= -1 # Invierte su direccion
+        marcador_two += 1
+        marcador.clear()
+        marcador.write(f"Jugador Uno: {marcador_one}      Jugador Dos: {marcador_two}", align="center", font=("Courier", 24, "normal") )
+
+
     if pelota.xcor() < -390: # Si revasa por el lado izquierdo, vuelve al centro
         pelota.goto(0,0)
         pelota.dx *= -1 # Cambia la direccion
+        marcador_one += 1
+        marcador.clear()
+        marcador.write(f"Jugador Uno: {marcador_one}      Jugador Dos: {marcador_two}", align="center", font=("Courier", 24, "normal") )
 
     if ((pelota.xcor() > 340 and pelota.xcor() < 350)
         and (pelota.ycor() < player_two.ycor() + 50
-        and pelota.ycor() > player_two.ycor()-50))
+        and pelota.ycor() > player_two.ycor()-50)):
+            pelota.dx *= -1
+        #Invierte el movimiento cuando colisiona con la pala izquierda
+        # Se comprueba que la pelota esta en el rango x o y y si esta, significa que hay colision e
+        #invierte el eje x
+
+    if ((pelota.xcor() < -340 and pelota.xcor() > -350)
+        and (pelota.ycor() < player_one.ycor() + 50
+        and pelota.ycor() > player_one.ycor()-50)):
+            pelota.dx *= -1
+    #Invierte el movimiento cuando colisiona con la pala derecha, mismo código pero inviertiendo signos
