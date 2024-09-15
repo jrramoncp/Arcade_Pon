@@ -27,9 +27,12 @@ Para ejecutar el juego, necesitas tener instalado Python y la librería `turtle`
 ## Controles del juego
 
 Jugador Uno:
+
     - Arriba: Tecla W
     - Abajo: Tecla S
+    
 Jugador Dos:
+
     - Arriba: Flecha ↑
     - Abajo: Flecha ↓
 
